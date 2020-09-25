@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.books_list_container {
+  margin: 10px auto auto;
+  width: 80%;
+}
+
+.action_button {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button_add_book {
+  margin: 10px;
+}
+
+.form_add_book_container {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
+}

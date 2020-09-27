@@ -1,0 +1,71 @@
+<div class="books_list_container">
+  <form class="form_add_book" #formAdd="ngForm"
+        (ngSubmit)="buttonSubmitValue === 'Add book' ? addBook(formAdd) : editBook(formAdd)"
+         (reset)="buttonSubmitValue = 'Add book'">
+    <div class="form_add_book_container">
+      <mat-form-field appearance="legacy">
+        <input [(ngModel)]="inputTitle"
+               matInput placeholder="Title" name="title" required>
+      </mat-form-field>
+      <mat-form-field class="form_add_book__input" appearance="legacy">
+        <input [(ngModel)]="inputAuthor"
+               matInput placeholder="Author"
+               name="author" required>
+      </mat-form-field>
+      <mat-form-field class="form_add_book__input" appearance="legacy">
+        <input [(ngModel)]="inputCountry"
+               matInput placeholder="Country"
+               name="country" required>
+      </mat-form-field>
+      <div class="form_add_book__buttons_container">
+        <button mat-raised-button
+                type="reset"
+                class="button_add_book"
+                color="primary">
+          Reset
+        </button>
+        <button mat-raised-button
+                type="submit"
+                class="button_add_book"
+                color="primary">
+          {{ buttonSubmitValue }}
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <table mat-table [dataSource]="booksList" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef> Author </th>
+      <td mat-cell *matCellDef="let book"> {{book.author}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef> Country </th>
+      <td mat-cell *matCellDef="let book"> {{book.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let book">
+          <mat-icon class="action_button"
+                    (click)="findBookForEdit(book.id)">
+            edit
+          </mat-icon>
+          <mat-icon class="action_button"
+                    (click)="removeBook(book.id)">
+            delete
+          </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

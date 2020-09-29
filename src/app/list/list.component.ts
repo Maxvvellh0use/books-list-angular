@@ -64,7 +64,6 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(JSON.parse(localStorage.bookList));
     localStorage.bookList = JSON.stringify(this.booksList);
   }
 }
